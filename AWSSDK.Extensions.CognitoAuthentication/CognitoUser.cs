@@ -286,7 +286,7 @@ namespace Amazon.Extensions.CognitoAuthentication
             UpdateUserAttributesRequest updateUserAttributesRequest =
                 CreateUpdateUserAttributesRequest(attributes);
 
-            await Provider.UpdateUserAttributesAsync(updateUserAttributesRequest).ConfigureAwait(false);
+            await Provider.UpdateUserAttributesAsync(updateUserAttributesRequest);
 
             //Update the local Attributes property
             foreach (KeyValuePair<string, string> entry in attributes)
@@ -305,7 +305,7 @@ namespace Amazon.Extensions.CognitoAuthentication
             DeleteUserAttributesRequest deleteUserAttributesRequest =
                 CreateDeleteUserAttributesRequest(attributeNamesToDelete);
 
-            await Provider.DeleteUserAttributesAsync(deleteUserAttributesRequest).ConfigureAwait(false);
+            await Provider.DeleteUserAttributesAsync(deleteUserAttributesRequest);
 
             //Update the local Attributes property
             foreach (string attribute in attributeNamesToDelete)
@@ -326,7 +326,7 @@ namespace Amazon.Extensions.CognitoAuthentication
         {
             SetUserSettingsRequest setUserSettingsRequest = CreateSetUserSettingsRequest(userSettings);
 
-            await Provider.SetUserSettingsAsync(setUserSettingsRequest).ConfigureAwait(false);
+            await Provider.SetUserSettingsAsync(setUserSettingsRequest);
 
             //Update the local Settings property
             foreach (KeyValuePair<string, string> entry in userSettings)
@@ -344,7 +344,7 @@ namespace Amazon.Extensions.CognitoAuthentication
         public async Task<List<CognitoDevice>> ListDevicesAsync(int limit, string paginationToken)
         {
             ListDevicesRequest listDevicesRequest = CreateListDevicesRequest(limit, paginationToken);
-            ListDevicesResponse listDevicesReponse = await Provider.ListDevicesAsync(listDevicesRequest).ConfigureAwait(false);
+            ListDevicesResponse listDevicesReponse = await Provider.ListDevicesAsync(listDevicesRequest);
             List<CognitoDevice> devicesList = new List<CognitoDevice>();
 
             foreach (DeviceType device in listDevicesReponse.Devices)

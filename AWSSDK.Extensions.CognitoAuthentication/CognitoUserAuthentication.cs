@@ -45,7 +45,7 @@ namespace Amazon.Extensions.CognitoAuthentication
             Tuple<BigInteger, BigInteger> tupleAa = AuthenticationHelper.CreateAaTuple();
             InitiateAuthRequest initiateRequest = CreateSrpAuthRequest(tupleAa);
 
-            InitiateAuthResponse initiateResponse = await Provider.InitiateAuthAsync(initiateRequest).ConfigureAwait(false);
+            InitiateAuthResponse initiateResponse = await Provider.InitiateAuthAsync(initiateRequest);
             UpdateUsernameAndSecretHash(initiateResponse.ChallengeParameters);
 
             RespondToAuthChallengeRequest challengeRequest =
@@ -60,7 +60,7 @@ namespace Amazon.Extensions.CognitoAuthentication
             }
 
             RespondToAuthChallengeResponse verifierResponse =
-                await Provider.RespondToAuthChallengeAsync(challengeRequest).ConfigureAwait(false);
+                await Provider.RespondToAuthChallengeAsync(challengeRequest);
 
             UpdateSessionIfAuthenticationComplete(verifierResponse.ChallengeName, verifierResponse.AuthenticationResult);
 
@@ -91,7 +91,7 @@ namespace Amazon.Extensions.CognitoAuthentication
                 ClientMetadata = new Dictionary<string, string>(customRequest.ClientMetadata)
             };
 
-            InitiateAuthResponse initiateResponse = await Provider.InitiateAuthAsync(authRequest).ConfigureAwait(false);
+            InitiateAuthResponse initiateResponse = await Provider.InitiateAuthAsync(authRequest);
             UpdateUsernameAndSecretHash(initiateResponse.ChallengeParameters);
 
             UpdateSessionIfAuthenticationComplete(initiateResponse.ChallengeName, initiateResponse.AuthenticationResult);
@@ -125,7 +125,7 @@ namespace Amazon.Extensions.CognitoAuthentication
             };
 
             RespondToAuthChallengeResponse authResponse =
-                await Provider.RespondToAuthChallengeAsync(request).ConfigureAwait(false);
+                await Provider.RespondToAuthChallengeAsync(request);
 
             UpdateSessionIfAuthenticationComplete(authResponse.ChallengeName, authResponse.AuthenticationResult);
 
@@ -167,7 +167,7 @@ namespace Amazon.Extensions.CognitoAuthentication
             }
 
             RespondToAuthChallengeResponse challengeResponse =
-                await Provider.RespondToAuthChallengeAsync(challengeRequest).ConfigureAwait(false);
+                await Provider.RespondToAuthChallengeAsync(challengeRequest);
 
             UpdateSessionIfAuthenticationComplete(challengeResponse.ChallengeName, challengeResponse.AuthenticationResult);
 
@@ -209,7 +209,7 @@ namespace Amazon.Extensions.CognitoAuthentication
             }
 
             RespondToAuthChallengeResponse challengeResponse =
-                await Provider.RespondToAuthChallengeAsync(challengeRequest).ConfigureAwait(false);
+                await Provider.RespondToAuthChallengeAsync(challengeRequest);
 
             UpdateSessionIfAuthenticationComplete(challengeResponse.ChallengeName, challengeResponse.AuthenticationResult);
 
@@ -235,7 +235,7 @@ namespace Amazon.Extensions.CognitoAuthentication
             InitiateAuthRequest initiateAuthRequest = CreateRefreshTokenAuthRequest(refreshTokenRequest.AuthFlowType);
 
             InitiateAuthResponse initiateResponse =
-                await Provider.InitiateAuthAsync(initiateAuthRequest).ConfigureAwait(false);
+                await Provider.InitiateAuthAsync(initiateAuthRequest);
 
             UpdateSessionIfAuthenticationComplete(initiateResponse.ChallengeName, initiateResponse.AuthenticationResult);
 
@@ -379,7 +379,7 @@ namespace Amazon.Extensions.CognitoAuthentication
 
         private InitiateAuthRequest CreateRefreshTokenAuthRequest(AuthFlowType authFlowType)
         {
-            EnsureUserAuthenticated();
+            //EnsureUserAuthenticated();
 
             if (authFlowType != AuthFlowType.REFRESH_TOKEN && authFlowType != AuthFlowType.REFRESH_TOKEN_AUTH)
             {

@@ -162,7 +162,7 @@ namespace Amazon.Extensions.CognitoAuthentication
             GetDeviceRequest getDeviceRequest = CreateGetDeviceRequest();
 
             GetDeviceResponse getDeviceResponse =
-                await User.Provider.GetDeviceAsync(getDeviceRequest).ConfigureAwait(false);
+                await User.Provider.GetDeviceAsync(getDeviceRequest);
 
             UpdateThisDevice(getDeviceResponse.Device);
         }

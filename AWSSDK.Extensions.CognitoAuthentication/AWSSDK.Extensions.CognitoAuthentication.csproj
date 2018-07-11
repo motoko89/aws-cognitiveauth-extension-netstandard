@@ -5,8 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AWSSDK.CognitoIdentity" Version="3.3.2.23" />
-    <PackageReference Include="AWSSDK.CognitoIdentityProvider" Version="3.3.10.1" />
+    <PackageReference Include="AWSSDK.CognitoIdentity" Version="3.3.2.25" />
+    <PackageReference Include="AWSSDK.CognitoIdentityProvider" Version="3.3.10.3" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Util\" />

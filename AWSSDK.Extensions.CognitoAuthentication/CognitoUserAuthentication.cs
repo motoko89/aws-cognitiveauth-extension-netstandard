@@ -60,7 +60,7 @@ namespace Amazon.Extensions.CognitoAuthentication
             }
 
             RespondToAuthChallengeResponse verifierResponse =
-                await Provider.RespondToAuthChallengeAsync(challengeRequest);
+                await Provider.RespondToAuthChallengeAsync(challengeRequest).ConfigureAwait(false);
 
             UpdateSessionIfAuthenticationComplete(verifierResponse.ChallengeName, verifierResponse.AuthenticationResult);
 
